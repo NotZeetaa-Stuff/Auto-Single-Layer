@@ -78,6 +78,7 @@ if [ ! "$sdk" = "33" ]; then
   abort
 else
   unzip -o "$ZIPFILE" system.prop -d $MODPATH >&2
+  ui_print "Auto Single LayerLayer for Android 13 only!"
 fi
 
 ##########################################################################################
