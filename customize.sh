@@ -59,6 +59,27 @@ set_permissions() {
   # set_perm /data/local/tmp/file.txt 0 0 644
 }
 
+sdk=$(getprop ro.build.version.sdk 2>/dev/null)
+version=$(getprop ro.system.build.version.release 2>/dev/null)
+
+if [ ! "$sdk" = "33" ]; then
+  ui_print " "
+  ui_print "****************** WARNING *******************"
+  ui_print " "
+  ui_print "! Wrong android version detected"
+  sleep 0.5
+  ui_print "This Magisk Module is for android 13 only"
+  sleep 0.5
+  ui_print "Your Android Version is: $version"
+  sleep 0.5
+  ui_print " "
+  ui_print "****************** Installation Failed *******"
+  ui_print " "
+  abort
+else
+  unzip -o "$ZIPFILE" system.prop -d $MODPATH >&2
+fi
+
 ##########################################################################################
 # MMT Extended Logic - Don't modify anything after this
 ##########################################################################################
